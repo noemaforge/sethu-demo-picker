@@ -91,7 +91,7 @@ pub struct Album {
     #[serde(default)]
     pub id: String,
     /// Display name reported by the server.
-    #[serde(default)]
+    #[serde(default, rename = "albumName")]
     pub name: String,
 }
 
@@ -166,11 +166,19 @@ struct PageBody {
     page: u64,
 }
 
-/// Text query body for smart and metadata search.
+/// Text query body for smart search.
 #[derive(Debug, Serialize)]
 struct QueryBody<'a> {
     /// Free text filter for the search.
     query: &'a str,
+}
+
+/// File name body for metadata search.
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+struct MetadataBody<'a> {
+    /// Original file name filter for the search.
+    original_file_name: &'a str,
 }
 
 /// Blocking HTTP client for the Immich search API.
@@ -237,9 +245,9 @@ impl ImmichClient {
         self.post("/search/smart", &QueryBody { query })
     }
 
-    /// Run a metadata search for a text query.
-    pub fn search_metadata(&self, query: &str) -> Result<SearchResponse, Error> {
-        self.post("/search/metadata", &QueryBody { query })
+    /// Run a metadata search for an original file name.
+    pub fn search_metadata(&self, original_file_name: &str) -> Result<SearchResponse, Error> {
+        self.post("/search/metadata", &MetadataBody { original_file_name })
     }
 }
 

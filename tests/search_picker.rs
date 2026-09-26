@@ -163,9 +163,17 @@ fn metadata_search_feeds_picker() {
     let seen = seen.lock().expect("read stub requests");
     assert_eq!(seen.len(), 1, "metadata request count");
     assert_eq!(seen[0].path, "/search/metadata", "metadata request path");
+    let body: serde_json::Value =
+        serde_json::from_str(&seen[0].body).expect("parse metadata request body");
+    assert_eq!(
+        body.get("originalFileName")
+            .and_then(|value| value.as_str()),
+        Some("photo-0.jpg"),
+        "metadata request sends file name"
+    );
     assert!(
-        seen[0].body.contains("photo-0.jpg"),
-        "metadata request sends query"
+        body.get("query").is_none(),
+        "metadata request has no unknown query field"
     );
     handle.join().expect("stop stub server");
 }
@@ -216,6 +224,14 @@ fn parse_fixture_file_from_disk() {
 fn parse_rejects_invalid_body() {
     let result = parse_search_response("not json");
     assert!(result.is_err(), "invalid body errors");
+}
+
+#[test]
+fn parse_reads_album_title() {
+    let body = "{\"albums\": {\"count\": 1, \"items\": [{\"id\": \"a1\", \"albumName\": \"Trip\"}]}, \"assets\": {\"count\": 0, \"items\": []}}";
+    let response = parse_search_response(body).expect("parse album title");
+    assert_eq!(response.albums.items.len(), 1, "album item count");
+    assert_eq!(response.albums.items[0].name, "Trip", "album title");
 }
 
 #[test]
