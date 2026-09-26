@@ -1,0 +1,5 @@
+Demo picker fixture notice.
+
+This crate targets the Immich v1.116.2 search contract. That contract comes from upstream commit 8bbcd5c31e4a227f92864ae2977c4033bc0c50b7.
+Its response shapes were derived from the upstream OpenAPI spec. That spec carries the AGPL-3.0-only license.
+This repository copies no spec text. Tests use hand-made responses that match the old contract.
