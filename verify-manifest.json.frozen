@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "harness_hash": "bf32f07f3b04489cbf7b612dad7f50bed8205d69b3d8ead91745ba4a632cf49b",
+  "harness_hash": "01b046d8e679b52b716bf9b5dbf7c7ca54228420d23b5e75eae58419f3341561",
   "files": [
     {
       "path": "scenarios/new/metadata.json",
@@ -28,8 +28,8 @@
     },
     {
       "path": "tests/harness_checks.rs",
-      "sha256": "92d7e9b55002c483ed944b09e40ed8a547b05cb084b0205938e66182f86573a6"
+      "sha256": "90fd008d96a714a954f030c58f28d18567c560362ea28bbaf8a89b26f9aac965"
     }
   ],
-  "frozen_at_epoch_secs": 1790505682
+  "frozen_at_epoch_secs": 1790505972
 }
