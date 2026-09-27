@@ -85,16 +85,29 @@ fn spawn_stub(bodies: Vec<String>) -> (String, Arc<Mutex<Vec<SeenRequest>>>, Joi
     (format!("http://{addr}"), seen, handle)
 }
 
-/// Build a response fixture holding the given asset IDs.
+/// Build an asset item JSON string.
+fn asset_json(index: usize, id: &str) -> String {
+    format!(
+        "{{\"id\": \"{id}\", \"deviceAssetId\": \"device-{index}\", \"deviceId\": \"phone\", \"type\": \"IMAGE\", \"originalFileName\": \"photo-{index}.jpg\", \"createdAt\": \"2024-01-01T00:00:00Z\"}}"
+    )
+}
+
+/// Build a random-search response fixture (v1.117.0: bare asset array).
+fn random_fixture(ids: &[&str]) -> String {
+    let items: Vec<String> = ids
+        .iter()
+        .enumerate()
+        .map(|(index, id)| asset_json(index, id))
+        .collect();
+    format!("[{}]", items.join(", "))
+}
+
+/// Build a wrapped response fixture for smart/metadata search.
 fn fixture(ids: &[&str]) -> String {
     let items: Vec<String> = ids
-       .iter()
+        .iter()
         .enumerate()
-        .map(|(index, id)| {
-            format!(
-                "{{\"id\": \"{id}\", \"deviceAssetId\": \"device-{index}\", \"deviceId\": \"phone\", \"type\": \"IMAGE\", \"originalFileName\": \"photo-{index}.jpg\", \"createdAt\": \"2024-01-01T00:00:00Z\"}}"
-            )
-        })
+        .map(|(index, id)| asset_json(index, id))
         .collect();
     format!(
         "{{\"albums\": {{\"total\": 0, \"count\": 0, \"items\": []}}, \"assets\": {{\"total\": {}, \"count\": {}, \"items\": [{}]}}}}",
@@ -111,9 +124,9 @@ fn selected(picker: &Picker) -> Vec<&str> {
 
 #[test]
 fn random_search_feeds_picker() {
-    let (base, seen, handle) = spawn_stub(vec![fixture(&["asset-r1", "asset-r2"])]);
+    let (base, seen, handle) = spawn_stub(vec![random_fixture(&["asset-r1", "asset-r2"])]);
     let client = ImmichClient::new(&base);
-    let response = client.search_random(1).expect("run random search");
+    let response = client.search_random().expect("run random search");
     let mut picker = Picker::new();
     picker.add_response(&response);
     assert_eq!(
@@ -124,10 +137,6 @@ fn random_search_feeds_picker() {
     let seen = seen.lock().expect("read stub requests");
     assert_eq!(seen.len(), 1, "random request count");
     assert_eq!(seen[0].path, "/search/random", "random request path");
-    assert!(
-        seen[0].body.contains("\"page\":1"),
-        "random request sends page"
-    );
     handle.join().expect("stop stub server");
 }
 
@@ -181,12 +190,11 @@ fn metadata_search_feeds_picker() {
 #[test]
 fn picker_more_pages_random_results() {
     let (base, seen, handle) = spawn_stub(vec![
-        fixture(&["asset-p1"]),
-        fixture(&["asset-p2", "asset-p3"]),
+        random_fixture(&["asset-p1"]),
+        random_fixture(&["asset-p2", "asset-p3"]),
     ]);
     let client = ImmichClient::new(&base);
     let mut picker = Picker::new();
-    assert_eq!(picker.next_page(), 1, "picker first page");
     picker.more(&client).expect("fetch first page");
     picker.more(&client).expect("fetch second page");
     assert_eq!(
@@ -194,23 +202,15 @@ fn picker_more_pages_random_results() {
         ["asset-p1", "asset-p2", "asset-p3"],
         "picker more ids"
     );
-    assert_eq!(picker.next_page(), 3, "picker next page");
     let seen = seen.lock().expect("read stub requests");
     assert_eq!(seen.len(), 2, "picker more request count");
-    assert!(
-        seen[0].body.contains("\"page\":1"),
-        "picker first page request"
-    );
-    assert!(
-        seen[1].body.contains("\"page\":2"),
-        "picker second page request"
-    );
     handle.join().expect("stop stub server");
 }
 
 #[test]
 fn parse_fixture_file_from_disk() {
     let mut file = tempfile::NamedTempFile::new().expect("create fixture file");
+    // Use the wrapped format; parse_search_response is still used by smart/metadata.
     file.write_all(fixture(&["asset-f1"]).as_bytes())
         .expect("write fixture file");
     let body = std::fs::read_to_string(file.path()).expect("read fixture file");
