@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "repo": "/home/nryn/work/sethu-demo-picker",
+  "baseline_commit": "3074c1f0f23ba6dd3c690d2573a70596f4743613",
+  "patched_commit": "b95ceb2",
+  "harness": "harness",
+  "scenarios_old": "harness/scenarios/old",
+  "scenarios_new": "harness/scenarios/new",
+  "spec_old_sha256": "ff2d4e2a7c35cbcf0ef0b8ca50158bf7711bc200a80f4cdcf0a51208403631c5",
+  "spec_new_sha256": "a5c98c5cf35f9b42a412a3aaee7c1e1f597279cc7c8a88cc090d7a7e21aedd26",
+  "checks": [
+    {
+      "name": "random-picker",
+      "role": "regression",
+      "change_ids": [
+        "vc1_adf77fb9626b8c5e3e6609c566803a17c458750ef11e5e35eb4d82b2dd3187e9",
+        "vc1_4e74444728ca138b50db2a126669244f7da46c24d748fa4e59fd9f32f21ca6ff",
+        "vc1_2c4b2914f03e7a9c4097971b691b00b9ae6718db164a5fa9a0263bd48760cdc2",
+        "vc1_37f8421e215976ed5feeed9478d83b7accb42deaa8316b161ffdf0c3d35dc545",
+        "vc1_73764c206007f30547943a5b9a4f47970c648d82fd665a6edfbce7d15ab8aaab"
+      ],
+      "test": "verify_random_picker",
+      "expected_diagnostic": "random picker ids",
+      "expected_exchange": [
+        { "scenario": "random-search", "method": "POST", "path": "/search/random" }
+      ]
+    },
+    {
+      "name": "smart-guard",
+      "role": "guard",
+      "change_ids": [],
+      "test": "verify_smart_guard",
+      "expected_exchange": [
+        { "scenario": "smart-search", "method": "POST", "path": "/search/smart" }
+      ]
+    },
+    {
+      "name": "metadata-guard",
+      "role": "guard",
+      "change_ids": [],
+      "test": "verify_metadata_guard",
+      "expected_exchange": [
+        { "scenario": "metadata-search", "method": "POST", "path": "/search/metadata" }
+      ]
+    }
+  ]
+}

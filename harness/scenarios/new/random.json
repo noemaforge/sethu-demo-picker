@@ -1,0 +1,64 @@
+{
+  "id": "random-search",
+  "change_ids": [
+    "vc1_adf77fb9626b8c5e3e6609c566803a17c458750ef11e5e35eb4d82b2dd3187e9",
+    "vc1_4e74444728ca138b50db2a126669244f7da46c24d748fa4e59fd9f32f21ca6ff",
+    "vc1_2c4b2914f03e7a9c4097971b691b00b9ae6718db164a5fa9a0263bd48760cdc2",
+    "vc1_37f8421e215976ed5feeed9478d83b7accb42deaa8316b161ffdf0c3d35dc545",
+    "vc1_73764c206007f30547943a5b9a4f47970c648d82fd665a6edfbce7d15ab8aaab"
+  ],
+  "spec_sha256": "a5c98c5cf35f9b42a412a3aaee7c1e1f597279cc7c8a88cc090d7a7e21aedd26",
+  "request": {
+    "method": "POST",
+    "path": "/search/random"
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+        "deviceAssetId": "device-0",
+        "deviceId": "device-1",
+        "duration": "0:00:01.000000",
+        "fileCreatedAt": "2024-09-27T10:00:00.000Z",
+        "fileModifiedAt": "2024-09-27T10:00:00.000Z",
+        "hasMetadata": true,
+        "id": "asset-r1",
+        "isArchived": false,
+        "isFavorite": false,
+        "isOffline": false,
+        "isTrashed": false,
+        "localDateTime": "2024-09-27T10:00:00.000Z",
+        "originalFileName": "photo-0.jpg",
+        "originalPath": "/photos/photo-0.jpg",
+        "ownerId": "550e8400-e29b-41d4-a716-446655440001",
+        "thumbhash": "3OcRJwh4d3h6eIeIh3h2e3h4gQ",
+        "type": "IMAGE",
+        "updatedAt": "2024-09-27T10:00:00.000Z",
+        "stack": null
+      },
+      {
+        "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+        "deviceAssetId": "device-1",
+        "deviceId": "device-1",
+        "duration": "0:00:01.000000",
+        "fileCreatedAt": "2024-09-27T10:00:00.000Z",
+        "fileModifiedAt": "2024-09-27T10:00:00.000Z",
+        "hasMetadata": true,
+        "id": "asset-r2",
+        "isArchived": false,
+        "isFavorite": false,
+        "isOffline": false,
+        "isTrashed": false,
+        "localDateTime": "2024-09-27T10:00:00.000Z",
+        "originalFileName": "photo-1.jpg",
+        "originalPath": "/photos/photo-1.jpg",
+        "ownerId": "550e8400-e29b-41d4-a716-446655440001",
+        "thumbhash": "3OcRJwh4d3h6eIeIh3h2e3h4gQ",
+        "type": "IMAGE",
+        "updatedAt": "2024-09-27T10:00:00.000Z",
+        "stack": null
+      }
+    ]
+  }
+}
