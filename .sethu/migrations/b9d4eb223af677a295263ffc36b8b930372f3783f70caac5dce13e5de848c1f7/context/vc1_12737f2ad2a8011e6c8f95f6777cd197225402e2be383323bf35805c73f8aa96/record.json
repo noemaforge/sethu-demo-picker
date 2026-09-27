@@ -1,0 +1,31 @@
+{
+  "id": "vc1_12737f2ad2a8011e6c8f95f6777cd197225402e2be383323bf35805c73f8aa96",
+  "endpoint": {
+    "method": "GET",
+    "path": "/system-config/defaults"
+  },
+  "kind": "response_schema_changed",
+  "severity": "breaking",
+  "details": {
+    "status": "200",
+    "schema_change": {
+      "pointer": "/properties/image/properties/previewFormat",
+      "target": "property",
+      "member": "previewFormat",
+      "operation": "removed",
+      "before": {
+        "present": true,
+        "value": {
+          "enum": [
+            "jpeg",
+            "webp"
+          ],
+          "type": "string"
+        }
+      },
+      "after": {
+        "present": false
+      }
+    }
+  }
+}

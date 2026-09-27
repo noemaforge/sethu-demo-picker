@@ -1,0 +1,1 @@
+{"scenario_id":"random-search","method":"POST","path":"/search/random","request_valid":true,"request_detail":"body matches the contract schema","response_status":200,"response_body_sha256":"b941c8aaf1c0cc00416241958c7ae808a2301ce8e33ef638c47fc883d672106b","response_written":true}

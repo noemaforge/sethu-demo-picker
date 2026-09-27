@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "old_spec_hash": "ff2d4e2a7c35cbcf0ef0b8ca50158bf7711bc200a80f4cdcf0a51208403631c5",
+  "new_spec_hash": "a5c98c5cf35f9b42a412a3aaee7c1e1f597279cc7c8a88cc090d7a7e21aedd26",
+  "old_provenance": {
+    "source": "/home/nryn/work/sethu/tests/fixtures/immich/old.json",
+    "file_sha256": "ff2d4e2a7c35cbcf0ef0b8ca50158bf7711bc200a80f4cdcf0a51208403631c5",
+    "file_bytes": 286273,
+    "git_remote": "https://github.com/noemaforge/sethu.git",
+    "git_commit": "1c35c9449c58ce34309261d2365877a17248ec6d"
+  },
+  "new_provenance": {
+    "source": "/home/nryn/work/sethu/tests/fixtures/immich/new.json",
+    "file_sha256": "a5c98c5cf35f9b42a412a3aaee7c1e1f597279cc7c8a88cc090d7a7e21aedd26",
+    "file_bytes": 287724,
+    "git_remote": "https://github.com/noemaforge/sethu.git",
+    "git_commit": "1c35c9449c58ce34309261d2365877a17248ec6d"
+  },
+  "sethu_version": "0.1.0"
+}

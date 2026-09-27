@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="nextest-run" tests="1" skipped="0" failures="0" errors="0" uuid="e6fbfc64-ce8b-4d49-9a10-8a868ad4afc0" timestamp="2026-09-27T16:13:41.083+05:30" time="0.025">
+    <testsuite name="sethu-demo-picker::harness_checks" tests="1" skipped="0" errors="0" failures="0">
+        <testcase name="verify_smart_guard" classname="sethu-demo-picker::harness_checks" timestamp="2026-09-27T16:13:41.083+05:30" time="0.025"/>
+    </testsuite>
+</testsuites>

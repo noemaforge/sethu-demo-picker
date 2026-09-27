@@ -1,0 +1,50 @@
+{
+  "stage": "original-new",
+  "check": "smart-guard",
+  "change_ids": [],
+  "expected_diagnostic": null,
+  "expected_exchange": [
+    {
+      "scenario": "smart-search",
+      "method": "POST",
+      "path": "/search/smart"
+    }
+  ],
+  "commit": "3074c1f0f23ba6dd3c690d2573a70596f4743613",
+  "spec_version": "new",
+  "spec_sha256": "a5c98c5cf35f9b42a412a3aaee7c1e1f597279cc7c8a88cc090d7a7e21aedd26",
+  "scenarios_dir": "/home/nryn/work/sethu-demo-picker/harness/scenarios/new",
+  "scenario_files": [
+    {
+      "name": "metadata.json",
+      "sha256": "a8681c196b81c49e31e2908e51e4f0247bd5f4f92239d74147e34d53b1630ab9"
+    },
+    {
+      "name": "random.json",
+      "sha256": "67c9f08fa173b49f92a21761fc2f6d0d68e32b3a8cbf2895a5c0cf1ea4ed0547"
+    },
+    {
+      "name": "smart.json",
+      "sha256": "e24325b5c460e6b2ec6b5c953afe91cde1becfaabe6ae5721d2443b6ef2c6521"
+    }
+  ],
+  "harness_hash": "01b046d8e679b52b716bf9b5dbf7c7ca54228420d23b5e75eae58419f3341561",
+  "test_command": "cargo nextest run --profile sethu -E test(=verify_smart_guard)",
+  "parser": "nextest-junit",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "build_failed": false,
+  "cases": [
+    {
+      "name": "verify_smart_guard",
+      "classname": "sethu-demo-picker::harness_checks",
+      "passed": true,
+      "output": ""
+    }
+  ],
+  "verdict": "pass",
+  "detail": "",
+  "started_epoch_secs": 1790506090,
+  "finished_epoch_secs": 1790506112
+}

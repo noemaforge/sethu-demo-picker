@@ -1,0 +1,43 @@
+{
+  "stage": "original-old",
+  "check": "metadata-guard",
+  "change_ids": [],
+  "expected_diagnostic": null,
+  "expected_exchange": [
+    {
+      "scenario": "metadata-search",
+      "method": "POST",
+      "path": "/search/metadata"
+    }
+  ],
+  "commit": "3074c1f0f23ba6dd3c690d2573a70596f4743613",
+  "spec_version": "old",
+  "spec_sha256": "ff2d4e2a7c35cbcf0ef0b8ca50158bf7711bc200a80f4cdcf0a51208403631c5",
+  "scenarios_dir": "/home/nryn/work/sethu-demo-picker/harness/scenarios/old",
+  "scenario_files": [
+    {
+      "name": "metadata.json",
+      "sha256": "4f2ac26dade5d5ef99a724abf8fed086e3accbe3f9e01850f1664503eb00a9f3"
+    },
+    {
+      "name": "random.json",
+      "sha256": "295154fd93b5788d2181fbed9ca5a5a6780918ccfbe4fecbd758d6a2b7023955"
+    },
+    {
+      "name": "smart.json",
+      "sha256": "22fa9b6c104b2218c0b567498705d687076f7a811051c07d496ef31efeab1115"
+    }
+  ],
+  "harness_hash": "bf32f07f3b04489cbf7b612dad7f50bed8205d69b3d8ead91745ba4a632cf49b",
+  "test_command": "cargo nextest run --profile sethu -E test(=verify_metadata_guard)",
+  "parser": "nextest-junit",
+  "exit_code": 101,
+  "signal": null,
+  "timed_out": false,
+  "build_failed": true,
+  "cases": [],
+  "verdict": "failed",
+  "detail": "harness for \"verify_metadata_guard\" did not build; the harness must build against both commits, so this stage cannot show a regression",
+  "started_epoch_secs": 1790505821,
+  "finished_epoch_secs": 1790505841
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "harness_hash": "01b046d8e679b52b716bf9b5dbf7c7ca54228420d23b5e75eae58419f3341561",
+  "files": [
+    {
+      "path": "scenarios/new/metadata.json",
+      "sha256": "a8681c196b81c49e31e2908e51e4f0247bd5f4f92239d74147e34d53b1630ab9"
+    },
+    {
+      "path": "scenarios/new/random.json",
+      "sha256": "67c9f08fa173b49f92a21761fc2f6d0d68e32b3a8cbf2895a5c0cf1ea4ed0547"
+    },
+    {
+      "path": "scenarios/new/smart.json",
+      "sha256": "e24325b5c460e6b2ec6b5c953afe91cde1becfaabe6ae5721d2443b6ef2c6521"
+    },
+    {
+      "path": "scenarios/old/metadata.json",
+      "sha256": "4f2ac26dade5d5ef99a724abf8fed086e3accbe3f9e01850f1664503eb00a9f3"
+    },
+    {
+      "path": "scenarios/old/random.json",
+      "sha256": "295154fd93b5788d2181fbed9ca5a5a6780918ccfbe4fecbd758d6a2b7023955"
+    },
+    {
+      "path": "scenarios/old/smart.json",
+      "sha256": "22fa9b6c104b2218c0b567498705d687076f7a811051c07d496ef31efeab1115"
+    },
+    {
+      "path": "tests/harness_checks.rs",
+      "sha256": "90fd008d96a714a954f030c58f28d18567c560362ea28bbaf8a89b26f9aac965"
+    }
+  ],
+  "frozen_at_epoch_secs": 1790506358
+}

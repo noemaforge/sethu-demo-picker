@@ -1,0 +1,7 @@
+operation reference switch at POST /search/random 200
+was #/components/schemas/SearchResponseDto
+now array of #/components/schemas/AssetResponseDto
+the components themselves may be unchanged
+related operations
+- POST /search/metadata
+- POST /search/smart

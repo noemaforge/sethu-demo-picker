@@ -1,0 +1,56 @@
+{
+  "stage": "original-new",
+  "check": "random-picker",
+  "change_ids": [
+    "vc1_adf77fb9626b8c5e3e6609c566803a17c458750ef11e5e35eb4d82b2dd3187e9",
+    "vc1_4e74444728ca138b50db2a126669244f7da46c24d748fa4e59fd9f32f21ca6ff",
+    "vc1_2c4b2914f03e7a9c4097971b691b00b9ae6718db164a5fa9a0263bd48760cdc2",
+    "vc1_37f8421e215976ed5feeed9478d83b7accb42deaa8316b161ffdf0c3d35dc545",
+    "vc1_73764c206007f30547943a5b9a4f47970c648d82fd665a6edfbce7d15ab8aaab"
+  ],
+  "expected_diagnostic": "random picker ids",
+  "expected_exchange": [
+    {
+      "scenario": "random-search",
+      "method": "POST",
+      "path": "/search/random"
+    }
+  ],
+  "commit": "3074c1f0f23ba6dd3c690d2573a70596f4743613",
+  "spec_version": "new",
+  "spec_sha256": "a5c98c5cf35f9b42a412a3aaee7c1e1f597279cc7c8a88cc090d7a7e21aedd26",
+  "scenarios_dir": "/home/nryn/work/sethu-demo-picker/harness/scenarios/new",
+  "scenario_files": [
+    {
+      "name": "metadata.json",
+      "sha256": "a8681c196b81c49e31e2908e51e4f0247bd5f4f92239d74147e34d53b1630ab9"
+    },
+    {
+      "name": "random.json",
+      "sha256": "67c9f08fa173b49f92a21761fc2f6d0d68e32b3a8cbf2895a5c0cf1ea4ed0547"
+    },
+    {
+      "name": "smart.json",
+      "sha256": "e24325b5c460e6b2ec6b5c953afe91cde1becfaabe6ae5721d2443b6ef2c6521"
+    }
+  ],
+  "harness_hash": "01b046d8e679b52b716bf9b5dbf7c7ca54228420d23b5e75eae58419f3341561",
+  "test_command": "cargo nextest run --profile sethu -E test(=verify_random_picker)",
+  "parser": "nextest-junit",
+  "exit_code": 100,
+  "signal": null,
+  "timed_out": false,
+  "build_failed": false,
+  "cases": [
+    {
+      "name": "verify_random_picker",
+      "classname": "sethu-demo-picker::harness_checks",
+      "passed": false,
+      "output": "thread 'verify_random_picker' (964191) panicked at tests/harness_checks.rs:12:5\nthreadverify_random_picker(964191) panicked at tests/harness_checks.rs:12:5:\nassertion `left == right` failed: random picker ids\n  left: []\n right: [asset-r1,asset-r2]\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\nrunning 1 test\ntest verify_random_picker ... FAILED\n\nfailures:\n\nfailures:\n    verify_random_picker\n\ntest result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.02s"
+    }
+  ],
+  "verdict": "expected-red",
+  "detail": "",
+  "started_epoch_secs": 1790506032,
+  "finished_epoch_secs": 1790506049
+}

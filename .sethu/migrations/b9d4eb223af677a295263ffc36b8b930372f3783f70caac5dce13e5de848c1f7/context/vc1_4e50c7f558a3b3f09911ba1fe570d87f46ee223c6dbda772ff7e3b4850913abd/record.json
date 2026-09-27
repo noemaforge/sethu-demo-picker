@@ -1,0 +1,24 @@
+{
+  "id": "vc1_4e50c7f558a3b3f09911ba1fe570d87f46ee223c6dbda772ff7e3b4850913abd",
+  "endpoint": {
+    "method": "PUT",
+    "path": "/system-config"
+  },
+  "kind": "request_schema_changed",
+  "severity": "breaking",
+  "details": {
+    "schema_change": {
+      "pointer": "/properties/image/required/thumbnail",
+      "target": "required_member",
+      "member": "thumbnail",
+      "operation": "added",
+      "before": {
+        "present": false
+      },
+      "after": {
+        "present": true,
+        "value": "thumbnail"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "attempt_id": "b9d4eb223af677a295263ffc36b8b930372f3783f70caac5dce13e5de848c1f7",
+  "old_spec_hash": "ff2d4e2a7c35cbcf0ef0b8ca50158bf7711bc200a80f4cdcf0a51208403631c5",
+  "new_spec_hash": "a5c98c5cf35f9b42a412a3aaee7c1e1f597279cc7c8a88cc090d7a7e21aedd26",
+  "capture_id": "f8d90b37d1a7e0fde75b7b552d5d87a1413607722593681b8025f313d2c68d02",
+  "repo_path": "/home/nryn/work/sethu-demo-picker",
+  "baseline_commit": "3074c1f0f23ba6dd3c690d2573a70596f4743613",
+  "scope": [],
+  "sethu_version": "0.1.0"
+}

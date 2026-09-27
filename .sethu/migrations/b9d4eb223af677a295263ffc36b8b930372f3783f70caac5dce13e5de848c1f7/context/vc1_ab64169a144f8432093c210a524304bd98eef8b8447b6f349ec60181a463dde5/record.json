@@ -1,0 +1,28 @@
+{
+  "id": "vc1_ab64169a144f8432093c210a524304bd98eef8b8447b6f349ec60181a463dde5",
+  "endpoint": {
+    "method": "GET",
+    "path": "/system-config/defaults"
+  },
+  "kind": "response_schema_changed",
+  "severity": "breaking",
+  "details": {
+    "status": "200",
+    "schema_change": {
+      "pointer": "/properties/image/properties/thumbnailSize",
+      "target": "property",
+      "member": "thumbnailSize",
+      "operation": "removed",
+      "before": {
+        "present": true,
+        "value": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "after": {
+        "present": false
+      }
+    }
+  }
+}
