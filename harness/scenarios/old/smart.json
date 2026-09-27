@@ -1,0 +1,46 @@
+{
+  "id": "smart-search",
+  "change_ids": [],
+  "spec_sha256": "ff2d4e2a7c35cbcf0ef0b8ca50158bf7711bc200a80f4cdcf0a51208403631c5",
+  "request": {
+    "method": "POST",
+    "path": "/search/smart",
+    "body": { "query": "sunset" }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "albums": { "count": 0, "facets": [], "items": [], "total": 0 },
+      "assets": {
+        "count": 1,
+        "facets": [],
+        "items": [
+          {
+            "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+            "deviceAssetId": "device-0",
+            "deviceId": "device-1",
+            "duration": "0:00:01.000000",
+            "fileCreatedAt": "2024-09-27T10:00:00.000Z",
+            "fileModifiedAt": "2024-09-27T10:00:00.000Z",
+            "hasMetadata": true,
+            "id": "asset-s1",
+            "isArchived": false,
+            "isFavorite": false,
+            "isOffline": false,
+            "isTrashed": false,
+            "localDateTime": "2024-09-27T10:00:00.000Z",
+            "originalFileName": "photo-0.jpg",
+            "originalPath": "/photos/photo-0.jpg",
+            "ownerId": "550e8400-e29b-41d4-a716-446655440001",
+            "thumbhash": "3OcRJwh4d3h6eIeIh3h2e3h4gQ",
+            "type": "IMAGE",
+            "updatedAt": "2024-09-27T10:00:00.000Z",
+            "stack": null
+          }
+        ],
+        "nextPage": null,
+        "total": 1
+      }
+    }
+  }
+}

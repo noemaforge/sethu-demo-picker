@@ -1,6 +1,6 @@
 //! Blocking client and picker for the Immich photo search API.
 //!
-//! The client targets the v1.116.2 search routes and reads the server
+//! The client targets the v1.117.0 search routes and reads the server
 //! address from the environment. The picker collects asset IDs across
 //! searches and pages forward through random results.
 
@@ -236,8 +236,34 @@ impl ImmichClient {
     }
 
     /// Run a random search and return one page of assets.
+    ///
+    /// v1.117.0: POST /search/random now returns a bare array of
+    /// AssetResponseDto instead of a SearchResponseDto object.  The page
+    /// argument is still sent so the old spec stub matches during the
+    /// original-old verification stage; the new spec ignores it.
     pub fn search_random(&self, page: u64) -> Result<SearchResponse, Error> {
-        self.post("/search/random", &PageBody { page })
+        let url = format!("{}/search/random", self.base_url);
+        let response = self
+            .http
+            .post(&url)
+            .json(&PageBody { page })
+            .send()
+            .map_err(Error::Http)?;
+        if !response.status().is_success() {
+            return Err(Error::Status(response.status().as_u16()));
+        }
+        let text = response.text().map_err(Error::Http)?;
+        // Try the new bare-array shape first; fall back to the old wrapped shape.
+        if let Ok(items) = serde_json::from_str::<Vec<Asset>>(&text) {
+            return Ok(SearchResponse {
+                albums: AlbumResults::default(),
+                assets: AssetResults {
+                    count: items.len() as u64,
+                    items,
+                },
+            });
+        }
+        parse_search_response(&text)
     }
 
     /// Run a smart search for a text query.
