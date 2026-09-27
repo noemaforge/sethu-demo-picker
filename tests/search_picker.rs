@@ -126,7 +126,7 @@ fn selected(picker: &Picker) -> Vec<&str> {
 fn random_search_feeds_picker() {
     let (base, seen, handle) = spawn_stub(vec![random_fixture(&["asset-r1", "asset-r2"])]);
     let client = ImmichClient::new(&base);
-    let response = client.search_random().expect("run random search");
+    let response = client.search_random(1).expect("run random search");
     let mut picker = Picker::new();
     picker.add_response(&response);
     assert_eq!(
@@ -137,6 +137,10 @@ fn random_search_feeds_picker() {
     let seen = seen.lock().expect("read stub requests");
     assert_eq!(seen.len(), 1, "random request count");
     assert_eq!(seen[0].path, "/search/random", "random request path");
+    assert!(
+        seen[0].body.contains("\"page\":1"),
+        "random request sends page"
+    );
     handle.join().expect("stop stub server");
 }
 
@@ -195,6 +199,7 @@ fn picker_more_pages_random_results() {
     ]);
     let client = ImmichClient::new(&base);
     let mut picker = Picker::new();
+    assert_eq!(picker.next_page(), 1, "picker first page");
     picker.more(&client).expect("fetch first page");
     picker.more(&client).expect("fetch second page");
     assert_eq!(
@@ -202,8 +207,17 @@ fn picker_more_pages_random_results() {
         ["asset-p1", "asset-p2", "asset-p3"],
         "picker more ids"
     );
+    assert_eq!(picker.next_page(), 3, "picker next page");
     let seen = seen.lock().expect("read stub requests");
     assert_eq!(seen.len(), 2, "picker more request count");
+    assert!(
+        seen[0].body.contains("\"page\":1"),
+        "picker first page request"
+    );
+    assert!(
+        seen[1].body.contains("\"page\":2"),
+        "picker second page request"
+    );
     handle.join().expect("stop stub server");
 }
 

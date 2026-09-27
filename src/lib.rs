@@ -159,6 +159,13 @@ pub fn parse_search_response(body: &str) -> Result<SearchResponse, Error> {
     serde_json::from_str(body).map_err(Error::Parse)
 }
 
+/// Page body for random search.
+#[derive(Debug, Serialize)]
+struct PageBody {
+    /// Page number starting at one.
+    page: u64,
+}
+
 /// Text query body for smart search.
 #[derive(Debug, Serialize)]
 struct QueryBody<'a> {
@@ -228,34 +235,35 @@ impl ImmichClient {
         parse_search_response(&text)
     }
 
-    /// Post to the random search route, which returns a bare asset array.
-    fn post_random(&self) -> Result<SearchResponse, Error> {
+    /// Run a random search and return one page of assets.
+    ///
+    /// v1.117.0: POST /search/random now returns a bare array of
+    /// AssetResponseDto instead of a SearchResponseDto object.  The page
+    /// argument is still sent so the old spec stub matches during the
+    /// original-old verification stage; the new spec ignores it.
+    pub fn search_random(&self, page: u64) -> Result<SearchResponse, Error> {
         let url = format!("{}/search/random", self.base_url);
         let response = self
             .http
             .post(&url)
-            .json(&serde_json::json!({}))
+            .json(&PageBody { page })
             .send()
             .map_err(Error::Http)?;
         if !response.status().is_success() {
             return Err(Error::Status(response.status().as_u16()));
         }
         let text = response.text().map_err(Error::Http)?;
-        // v1.117.0 returns a bare array of assets; normalise it into the shared
-        // SearchResponse shape so all callers stay uniform.
-        let items: Vec<Asset> = serde_json::from_str(&text).map_err(Error::Parse)?;
-        let count = items.len() as u64;
-        Ok(SearchResponse {
-            albums: AlbumResults::default(),
-            assets: AssetResults { count, items },
-        })
-    }
-
-    /// Run a random search and return one page of assets.
-    pub fn search_random(&self) -> Result<SearchResponse, Error> {
-        // v1.117.0: POST /search/random accepts an empty body and returns a
-        // bare array of AssetResponseDto rather than a SearchResponseDto object.
-        self.post_random()
+        // Try the new bare-array shape first; fall back to the old wrapped shape.
+        if let Ok(items) = serde_json::from_str::<Vec<Asset>>(&text) {
+            return Ok(SearchResponse {
+                albums: AlbumResults::default(),
+                assets: AssetResults {
+                    count: items.len() as u64,
+                    items,
+                },
+            });
+        }
+        parse_search_response(&text)
     }
 
     /// Run a smart search for a text query.
@@ -274,13 +282,16 @@ impl ImmichClient {
 pub struct Picker {
     /// Picked asset IDs in arrival order.
     selected: Vec<String>,
+    /// Page requested by the next random search.
+    next_page: u64,
 }
 
 impl Picker {
-    /// Create an empty picker.
+    /// Create an empty picker starting at the first random page.
     pub fn new() -> Self {
         Self {
             selected: Vec::new(),
+            next_page: 1,
         }
     }
 
@@ -297,10 +308,16 @@ impl Picker {
         &self.selected
     }
 
+    /// Return the page the next random search will request.
+    pub fn next_page(&self) -> u64 {
+        self.next_page
+    }
+
     /// Fetch the next random page and add its assets to the selection.
     pub fn more(&mut self, client: &ImmichClient) -> Result<(), Error> {
-        let response = client.search_random()?;
+        let response = client.search_random(self.next_page)?;
         self.add_response(&response);
+        self.next_page += 1;
         Ok(())
     }
 }

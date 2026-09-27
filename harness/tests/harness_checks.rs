@@ -4,7 +4,7 @@ use demo_picker::{ImmichClient, Picker};
 fn verify_random_picker() {
     let client = ImmichClient::from_env().expect("read stub address from environment");
     let mut picker = Picker::new();
-    match client.search_random() {
+    match client.search_random(1) {
         Ok(response) => picker.add_response(&response),
         Err(_) => {}
     }
