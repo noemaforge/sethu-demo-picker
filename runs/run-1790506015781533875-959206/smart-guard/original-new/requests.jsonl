@@ -1,0 +1,1 @@
+{"scenario_id":"smart-search","method":"POST","path":"/search/smart","request_valid":true,"request_detail":"body matches the contract schema","response_status":200,"response_body_sha256":"348ad89fd8de209f50de4aaea934e66bbb2e57c1f69e77ecc9cae16c0062b10e","response_written":true}
