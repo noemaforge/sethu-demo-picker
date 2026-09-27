@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "sethu": "0.1.0",
+  "pack": "0.1.0",
+  "files": {
+    ".bob/commands/api-upgrade.md": "7280af993297698fa42067c4168b6879e178ddedbd5f3e25493b489aca4f7aa6",
+    ".bob/skills/api-upgrade/SKILL.md": "85d5163d47a4e9a5e034a7a78bd06047c7b71d74776c5cf1c45ba5946e63dc49",
+    ".bob/skills/api-upgrade/references/commands.md": "7503e45491632b1ef3dc6c4a46497436dced2006d0778b7787ce8368a2ae56c2",
+    ".bob/skills/api-upgrade/references/evidence.md": "1750a266acf36527b6c653b6fc92682d7d1bac635344a7d935d1398ae1142de6",
+    ".bob/skills/api-upgrade/references/outcomes.md": "b782d7609e81b7db2a5a2d85a012758990b5270bd6543c64d0388eca5c7aa358"
+  },
+  "owned_modes": [
+    "sethu-migrator"
+  ]
+}

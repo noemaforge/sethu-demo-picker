@@ -1,0 +1,29 @@
+{
+  "id": "vc1_62a120df52c7b9a8f836e8455cdfdb8cf6dac89c6e2c693f3130ca08443e1e80",
+  "endpoint": {
+    "method": "GET",
+    "path": "/system-config"
+  },
+  "kind": "response_schema_changed",
+  "severity": "breaking",
+  "details": {
+    "status": "200",
+    "schema_change": {
+      "pointer": "/properties/image/properties/quality",
+      "target": "property",
+      "member": "quality",
+      "operation": "removed",
+      "before": {
+        "present": true,
+        "value": {
+          "maximum": 100,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "after": {
+        "present": false
+      }
+    }
+  }
+}

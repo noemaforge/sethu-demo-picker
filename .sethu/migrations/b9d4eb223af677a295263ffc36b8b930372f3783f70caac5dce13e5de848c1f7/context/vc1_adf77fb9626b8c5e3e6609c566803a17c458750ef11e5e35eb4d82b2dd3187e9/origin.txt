@@ -1,0 +1,4 @@
+shared component RandomSearchDto
+the change comes from a named component used across operations
+related operations
+none

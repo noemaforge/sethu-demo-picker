@@ -1,0 +1,28 @@
+{
+  "id": "vc1_bb3719c86028c4c702975cbd96c0b3dbd38503e95eb53cdcf39b3bca16a6d6a3",
+  "endpoint": {
+    "method": "PUT",
+    "path": "/system-config"
+  },
+  "kind": "request_schema_changed",
+  "severity": "breaking",
+  "details": {
+    "schema_change": {
+      "pointer": "/properties/image/properties/quality",
+      "target": "property",
+      "member": "quality",
+      "operation": "removed",
+      "before": {
+        "present": true,
+        "value": {
+          "maximum": 100,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "after": {
+        "present": false
+      }
+    }
+  }
+}

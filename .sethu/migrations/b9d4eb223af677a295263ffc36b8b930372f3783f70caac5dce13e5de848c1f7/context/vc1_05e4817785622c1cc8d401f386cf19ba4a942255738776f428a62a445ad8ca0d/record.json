@@ -1,0 +1,27 @@
+{
+  "id": "vc1_05e4817785622c1cc8d401f386cf19ba4a942255738776f428a62a445ad8ca0d",
+  "endpoint": {
+    "method": "PUT",
+    "path": "/system-config"
+  },
+  "kind": "request_schema_changed",
+  "severity": "breaking",
+  "details": {
+    "schema_change": {
+      "pointer": "/properties/image/properties/thumbnailSize",
+      "target": "property",
+      "member": "thumbnailSize",
+      "operation": "removed",
+      "before": {
+        "present": true,
+        "value": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "after": {
+        "present": false
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "vc1_55abe222364881641fd5cf93c10bcbc142d7eced6f14b770b26802a52ea05698",
+  "endpoint": {
+    "method": "PUT",
+    "path": "/system-config"
+  },
+  "kind": "request_schema_changed",
+  "severity": "breaking",
+  "details": {
+    "schema_change": {
+      "pointer": "/properties/image/required/preview",
+      "target": "required_member",
+      "member": "preview",
+      "operation": "added",
+      "before": {
+        "present": false
+      },
+      "after": {
+        "present": true,
+        "value": "preview"
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling libc v0.2.189
+   Compiling stable_deref_trait v1.2.1
+   Compiling pin-project-lite v0.2.17
+   Compiling bytes v1.12.1
+   Compiling futures-core v0.3.34
+   Compiling find-msvc-tools v0.1.14
+   Compiling shlex v2.0.1
+   Compiling itoa v1.0.18
+   Compiling vcpkg v0.2.15
+   Compiling futures-sink v0.3.34
+   Compiling pkg-config v0.3.34
+   Compiling smallvec v1.16.2
+   Compiling litemap v0.8.3
+   Compiling writeable v0.6.4
+   Compiling cc v1.5.1
+   Compiling once_cell v1.21.4
+   Compiling bitflags v2.13.2
+   Compiling slab v0.4.12
+   Compiling cfg-if v1.0.5
+   Compiling icu_properties_data v2.3.0
+   Compiling utf8_iter v1.0.4
+   Compiling icu_normalizer_data v2.3.0
+   Compiling percent-encoding v2.3.2
+   Compiling memchr v2.8.3
+   Compiling tracing-core v0.1.36
+   Compiling httparse v1.10.1
+   Compiling openssl v0.10.81
+   Compiling http v1.5.0
+   Compiling futures-io v0.3.34
+   Compiling serde_core v1.0.229
+   Compiling foreign-types-shared v0.1.1
+   Compiling equivalent v1.0.2
+   Compiling rustversion v1.0.23
+   Compiling hashbrown v0.17.1
+   Compiling futures-task v0.3.34
+   Compiling foreign-types v0.3.2
+   Compiling futures-util v0.3.34
+   Compiling tracing v0.1.44
+   Compiling native-tls v0.2.18
+   Compiling syn v3.0.6
+   Compiling syn v2.0.119
+   Compiling tower-service v0.3.3
+   Compiling atomic-waker v1.1.2
+   Compiling try-lock v0.2.5
+   Compiling fnv v1.0.7
+   Compiling want v0.3.1
+   Compiling form_urlencoded v1.2.2
+   Compiling futures-channel v0.3.34
+   Compiling indexmap v2.14.2
+   Compiling mio v1.2.3
+   Compiling socket2 v0.6.5
+   Compiling http-body v1.1.0
+   Compiling zmij v1.0.23
+   Compiling serde v1.0.229
+   Compiling log v0.4.34
+   Compiling openssl-probe v0.2.1
+   Compiling tokio v1.53.1
+   Compiling encoding_rs v0.8.42
+   Compiling sync_wrapper v1.0.2
+   Compiling serde_json v1.0.151
+   Compiling tower-layer v0.3.3
+   Compiling base64 v0.23.1
+   Compiling ipnet v2.12.2
+   Compiling openssl-sys v0.9.117
+   Compiling http-body-util v0.1.5
+   Compiling zeroize v1.9.0
+   Compiling ryu v1.0.23
+   Compiling simdutf8 v0.1.5
+   Compiling multiversion_no_op v1.0.0
+   Compiling core_detect v1.0.0
+   Compiling scopeguard v1.2.0
+   Compiling rustls-pki-types v1.15.1
+   Compiling mime v0.3.17
+   Compiling base64 v0.22.1
+   Compiling getrandom v0.4.3
+   Compiling rustix v1.1.5
+   Compiling linux-raw-sys v0.12.1
+   Compiling fastrand v2.5.0
+   Compiling synstructure v0.14.0
+   Compiling zerovec-derive v0.11.6
+   Compiling displaydoc v0.2.7
+   Compiling serde_derive v1.0.229
+   Compiling zerofrom-derive v0.1.8
+   Compiling yoke-derive v0.8.3
+   Compiling openssl-macros v0.1.1
+   Compiling zerofrom v0.1.8
+   Compiling yoke v0.8.3
+   Compiling tempfile v3.27.0
+   Compiling zerovec v0.11.8
+   Compiling zerotrie v0.2.5
+   Compiling tinystr v0.8.4
+   Compiling potential_utf v0.1.6
+   Compiling icu_collections v2.3.0
+   Compiling tokio-util v0.7.19
+   Compiling tower v0.5.3
+   Compiling icu_locale_core v2.3.0
+   Compiling h2 v0.4.19
+   Compiling icu_provider v2.3.1
+   Compiling serde_urlencoded v0.7.1
+   Compiling icu_normalizer v2.3.0
+   Compiling icu_properties v2.3.0
+   Compiling idna_adapter v1.2.2
+   Compiling tokio-native-tls v0.3.1
+   Compiling idna v1.1.0
+   Compiling url v2.5.8
+   Compiling tower-http v0.6.11
+   Compiling hyper v1.11.1
+   Compiling hyper-util v0.1.21
+   Compiling hyper-tls v0.6.0
+   Compiling reqwest v0.12.28
+   Compiling sethu-demo-picker v0.1.0 (/home/nryn/work/sethu-demo-picker/runs/run-1790505694706176924-920147/smart-guard/original-new/worktree-1790505783485258250-920147)
+error[E0061]: this method takes 1 argument but 0 arguments were supplied
+   --> tests/harness_checks.rs:7:18
+    |
+  7 |     match client.search_random() {
+    |                  ^^^^^^^^^^^^^-- argument #1 of type `u64` is missing
+    |
+note: method defined here
+   --> src/lib.rs:239:12
+    |
+239 |     pub fn search_random(&self, page: u64) -> Result<SearchResponse, Error> {
+    |            ^^^^^^^^^^^^^
+help: provide the argument
+    |
+  7 |     match client.search_random(/* u64 */) {
+    |                                +++++++++
+
+For more information about this error, try `rustc --explain E0061`.
+error: could not compile `sethu-demo-picker` (test "harness_checks") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: command `/home/nryn/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo '--color=auto' test --no-run --message-format json-render-diagnostics` exited with code 101

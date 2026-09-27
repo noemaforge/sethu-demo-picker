@@ -1,0 +1,860 @@
+{
+  "operation": {
+    "operationId": "updateConfig",
+    "parameters": [],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/SystemConfigDto"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SystemConfigDto"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "security": [
+      {
+        "bearer": []
+      },
+      {
+        "cookie": []
+      },
+      {
+        "api_key": []
+      }
+    ],
+    "tags": [
+      "System Config"
+    ]
+  },
+  "components": {
+    "AudioCodec": {
+      "enum": [
+        "mp3",
+        "aac",
+        "libopus"
+      ],
+      "type": "string"
+    },
+    "CLIPConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "modelName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "enabled",
+        "modelName"
+      ],
+      "type": "object"
+    },
+    "CQMode": {
+      "enum": [
+        "auto",
+        "cqp",
+        "icq"
+      ],
+      "type": "string"
+    },
+    "Colorspace": {
+      "enum": [
+        "srgb",
+        "p3"
+      ],
+      "type": "string"
+    },
+    "DuplicateDetectionConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "maxDistance": {
+          "format": "double",
+          "maximum": 0.1,
+          "minimum": 0.001,
+          "type": "number"
+        }
+      },
+      "required": [
+        "enabled",
+        "maxDistance"
+      ],
+      "type": "object"
+    },
+    "FacialRecognitionConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "maxDistance": {
+          "format": "double",
+          "maximum": 2,
+          "minimum": 0.1,
+          "type": "number"
+        },
+        "minFaces": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "minScore": {
+          "format": "double",
+          "maximum": 1,
+          "minimum": 0.1,
+          "type": "number"
+        },
+        "modelName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "enabled",
+        "maxDistance",
+        "minFaces",
+        "minScore",
+        "modelName"
+      ],
+      "type": "object"
+    },
+    "ImageFormat": {
+      "enum": [
+        "jpeg",
+        "webp"
+      ],
+      "type": "string"
+    },
+    "JobSettingsDto": {
+      "properties": {
+        "concurrency": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "concurrency"
+      ],
+      "type": "object"
+    },
+    "LogLevel": {
+      "enum": [
+        "verbose",
+        "debug",
+        "log",
+        "warn",
+        "error",
+        "fatal"
+      ],
+      "type": "string"
+    },
+    "SystemConfigDto": {
+      "properties": {
+        "ffmpeg": {
+          "$ref": "#/components/schemas/SystemConfigFFmpegDto"
+        },
+        "image": {
+          "$ref": "#/components/schemas/SystemConfigImageDto"
+        },
+        "job": {
+          "$ref": "#/components/schemas/SystemConfigJobDto"
+        },
+        "library": {
+          "$ref": "#/components/schemas/SystemConfigLibraryDto"
+        },
+        "logging": {
+          "$ref": "#/components/schemas/SystemConfigLoggingDto"
+        },
+        "machineLearning": {
+          "$ref": "#/components/schemas/SystemConfigMachineLearningDto"
+        },
+        "map": {
+          "$ref": "#/components/schemas/SystemConfigMapDto"
+        },
+        "metadata": {
+          "$ref": "#/components/schemas/SystemConfigMetadataDto"
+        },
+        "newVersionCheck": {
+          "$ref": "#/components/schemas/SystemConfigNewVersionCheckDto"
+        },
+        "notifications": {
+          "$ref": "#/components/schemas/SystemConfigNotificationsDto"
+        },
+        "oauth": {
+          "$ref": "#/components/schemas/SystemConfigOAuthDto"
+        },
+        "passwordLogin": {
+          "$ref": "#/components/schemas/SystemConfigPasswordLoginDto"
+        },
+        "reverseGeocoding": {
+          "$ref": "#/components/schemas/SystemConfigReverseGeocodingDto"
+        },
+        "server": {
+          "$ref": "#/components/schemas/SystemConfigServerDto"
+        },
+        "storageTemplate": {
+          "$ref": "#/components/schemas/SystemConfigStorageTemplateDto"
+        },
+        "theme": {
+          "$ref": "#/components/schemas/SystemConfigThemeDto"
+        },
+        "trash": {
+          "$ref": "#/components/schemas/SystemConfigTrashDto"
+        },
+        "user": {
+          "$ref": "#/components/schemas/SystemConfigUserDto"
+        }
+      },
+      "required": [
+        "ffmpeg",
+        "image",
+        "job",
+        "library",
+        "logging",
+        "machineLearning",
+        "map",
+        "metadata",
+        "newVersionCheck",
+        "notifications",
+        "oauth",
+        "passwordLogin",
+        "reverseGeocoding",
+        "server",
+        "storageTemplate",
+        "theme",
+        "trash",
+        "user"
+      ],
+      "type": "object"
+    },
+    "SystemConfigFFmpegDto": {
+      "properties": {
+        "accel": {
+          "$ref": "#/components/schemas/TranscodeHWAccel"
+        },
+        "accelDecode": {
+          "type": "boolean"
+        },
+        "acceptedAudioCodecs": {
+          "items": {
+            "$ref": "#/components/schemas/AudioCodec"
+          },
+          "type": "array"
+        },
+        "acceptedContainers": {
+          "items": {
+            "$ref": "#/components/schemas/VideoContainer"
+          },
+          "type": "array"
+        },
+        "acceptedVideoCodecs": {
+          "items": {
+            "$ref": "#/components/schemas/VideoCodec"
+          },
+          "type": "array"
+        },
+        "bframes": {
+          "maximum": 16,
+          "minimum": -1,
+          "type": "integer"
+        },
+        "cqMode": {
+          "$ref": "#/components/schemas/CQMode"
+        },
+        "crf": {
+          "maximum": 51,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "gopSize": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "maxBitrate": {
+          "type": "string"
+        },
+        "npl": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "preferredHwDevice": {
+          "type": "string"
+        },
+        "preset": {
+          "type": "string"
+        },
+        "refs": {
+          "maximum": 6,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "targetAudioCodec": {
+          "$ref": "#/components/schemas/AudioCodec"
+        },
+        "targetResolution": {
+          "type": "string"
+        },
+        "targetVideoCodec": {
+          "$ref": "#/components/schemas/VideoCodec"
+        },
+        "temporalAQ": {
+          "type": "boolean"
+        },
+        "threads": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "tonemap": {
+          "$ref": "#/components/schemas/ToneMapping"
+        },
+        "transcode": {
+          "$ref": "#/components/schemas/TranscodePolicy"
+        },
+        "twoPass": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "accel",
+        "accelDecode",
+        "acceptedAudioCodecs",
+        "acceptedContainers",
+        "acceptedVideoCodecs",
+        "bframes",
+        "cqMode",
+        "crf",
+        "gopSize",
+        "maxBitrate",
+        "npl",
+        "preferredHwDevice",
+        "preset",
+        "refs",
+        "targetAudioCodec",
+        "targetResolution",
+        "targetVideoCodec",
+        "temporalAQ",
+        "threads",
+        "tonemap",
+        "transcode",
+        "twoPass"
+      ],
+      "type": "object"
+    },
+    "SystemConfigFacesDto": {
+      "properties": {
+        "import": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "import"
+      ],
+      "type": "object"
+    },
+    "SystemConfigGeneratedImageDto": {
+      "properties": {
+        "format": {
+          "$ref": "#/components/schemas/ImageFormat"
+        },
+        "quality": {
+          "maximum": 100,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "size": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "format",
+        "quality",
+        "size"
+      ],
+      "type": "object"
+    },
+    "SystemConfigImageDto": {
+      "properties": {
+        "colorspace": {
+          "$ref": "#/components/schemas/Colorspace"
+        },
+        "extractEmbedded": {
+          "type": "boolean"
+        },
+        "preview": {
+          "$ref": "#/components/schemas/SystemConfigGeneratedImageDto"
+        },
+        "thumbnail": {
+          "$ref": "#/components/schemas/SystemConfigGeneratedImageDto"
+        }
+      },
+      "required": [
+        "colorspace",
+        "extractEmbedded",
+        "preview",
+        "thumbnail"
+      ],
+      "type": "object"
+    },
+    "SystemConfigJobDto": {
+      "properties": {
+        "backgroundTask": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        },
+        "faceDetection": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        },
+        "library": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        },
+        "metadataExtraction": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        },
+        "migration": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        },
+        "notifications": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        },
+        "search": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        },
+        "sidecar": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        },
+        "smartSearch": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        },
+        "thumbnailGeneration": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        },
+        "videoConversion": {
+          "$ref": "#/components/schemas/JobSettingsDto"
+        }
+      },
+      "required": [
+        "backgroundTask",
+        "faceDetection",
+        "library",
+        "metadataExtraction",
+        "migration",
+        "notifications",
+        "search",
+        "sidecar",
+        "smartSearch",
+        "thumbnailGeneration",
+        "videoConversion"
+      ],
+      "type": "object"
+    },
+    "SystemConfigLibraryDto": {
+      "properties": {
+        "scan": {
+          "$ref": "#/components/schemas/SystemConfigLibraryScanDto"
+        },
+        "watch": {
+          "$ref": "#/components/schemas/SystemConfigLibraryWatchDto"
+        }
+      },
+      "required": [
+        "scan",
+        "watch"
+      ],
+      "type": "object"
+    },
+    "SystemConfigLibraryScanDto": {
+      "properties": {
+        "cronExpression": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "cronExpression",
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "SystemConfigLibraryWatchDto": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "SystemConfigLoggingDto": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "level": {
+          "$ref": "#/components/schemas/LogLevel"
+        }
+      },
+      "required": [
+        "enabled",
+        "level"
+      ],
+      "type": "object"
+    },
+    "SystemConfigMachineLearningDto": {
+      "properties": {
+        "clip": {
+          "$ref": "#/components/schemas/CLIPConfig"
+        },
+        "duplicateDetection": {
+          "$ref": "#/components/schemas/DuplicateDetectionConfig"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "facialRecognition": {
+          "$ref": "#/components/schemas/FacialRecognitionConfig"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "clip",
+        "duplicateDetection",
+        "enabled",
+        "facialRecognition",
+        "url"
+      ],
+      "type": "object"
+    },
+    "SystemConfigMapDto": {
+      "properties": {
+        "darkStyle": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "lightStyle": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "darkStyle",
+        "enabled",
+        "lightStyle"
+      ],
+      "type": "object"
+    },
+    "SystemConfigMetadataDto": {
+      "properties": {
+        "faces": {
+          "$ref": "#/components/schemas/SystemConfigFacesDto"
+        }
+      },
+      "required": [
+        "faces"
+      ],
+      "type": "object"
+    },
+    "SystemConfigNewVersionCheckDto": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "SystemConfigNotificationsDto": {
+      "properties": {
+        "smtp": {
+          "$ref": "#/components/schemas/SystemConfigSmtpDto"
+        }
+      },
+      "required": [
+        "smtp"
+      ],
+      "type": "object"
+    },
+    "SystemConfigOAuthDto": {
+      "properties": {
+        "autoLaunch": {
+          "type": "boolean"
+        },
+        "autoRegister": {
+          "type": "boolean"
+        },
+        "buttonText": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "clientSecret": {
+          "type": "string"
+        },
+        "defaultStorageQuota": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "issuerUrl": {
+          "type": "string"
+        },
+        "mobileOverrideEnabled": {
+          "type": "boolean"
+        },
+        "mobileRedirectUri": {
+          "type": "string"
+        },
+        "profileSigningAlgorithm": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "signingAlgorithm": {
+          "type": "string"
+        },
+        "storageLabelClaim": {
+          "type": "string"
+        },
+        "storageQuotaClaim": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "autoLaunch",
+        "autoRegister",
+        "buttonText",
+        "clientId",
+        "clientSecret",
+        "defaultStorageQuota",
+        "enabled",
+        "issuerUrl",
+        "mobileOverrideEnabled",
+        "mobileRedirectUri",
+        "profileSigningAlgorithm",
+        "scope",
+        "signingAlgorithm",
+        "storageLabelClaim",
+        "storageQuotaClaim"
+      ],
+      "type": "object"
+    },
+    "SystemConfigPasswordLoginDto": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "SystemConfigReverseGeocodingDto": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "SystemConfigServerDto": {
+      "properties": {
+        "externalDomain": {
+          "type": "string"
+        },
+        "loginPageMessage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "externalDomain",
+        "loginPageMessage"
+      ],
+      "type": "object"
+    },
+    "SystemConfigSmtpDto": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "from": {
+          "type": "string"
+        },
+        "replyTo": {
+          "type": "string"
+        },
+        "transport": {
+          "$ref": "#/components/schemas/SystemConfigSmtpTransportDto"
+        }
+      },
+      "required": [
+        "enabled",
+        "from",
+        "replyTo",
+        "transport"
+      ],
+      "type": "object"
+    },
+    "SystemConfigSmtpTransportDto": {
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "ignoreCert": {
+          "type": "boolean"
+        },
+        "password": {
+          "type": "string"
+        },
+        "port": {
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "number"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "host",
+        "ignoreCert",
+        "password",
+        "port",
+        "username"
+      ],
+      "type": "object"
+    },
+    "SystemConfigStorageTemplateDto": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "hashVerificationEnabled": {
+          "type": "boolean"
+        },
+        "template": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "enabled",
+        "hashVerificationEnabled",
+        "template"
+      ],
+      "type": "object"
+    },
+    "SystemConfigThemeDto": {
+      "properties": {
+        "customCss": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "customCss"
+      ],
+      "type": "object"
+    },
+    "SystemConfigTrashDto": {
+      "properties": {
+        "days": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "days",
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "SystemConfigUserDto": {
+      "properties": {
+        "deleteDelay": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "deleteDelay"
+      ],
+      "type": "object"
+    },
+    "ToneMapping": {
+      "enum": [
+        "hable",
+        "mobius",
+        "reinhard",
+        "disabled"
+      ],
+      "type": "string"
+    },
+    "TranscodeHWAccel": {
+      "enum": [
+        "nvenc",
+        "qsv",
+        "vaapi",
+        "rkmpp",
+        "disabled"
+      ],
+      "type": "string"
+    },
+    "TranscodePolicy": {
+      "enum": [
+        "all",
+        "optimal",
+        "bitrate",
+        "required",
+        "disabled"
+      ],
+      "type": "string"
+    },
+    "VideoCodec": {
+      "enum": [
+        "h264",
+        "hevc",
+        "vp9",
+        "av1"
+      ],
+      "type": "string"
+    },
+    "VideoContainer": {
+      "enum": [
+        "mov",
+        "mp4",
+        "ogg",
+        "webm"
+      ],
+      "type": "string"
+    }
+  }
+}

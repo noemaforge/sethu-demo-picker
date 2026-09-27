@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="nextest-run" tests="1" skipped="0" failures="1" errors="0" uuid="4f8dee86-9e86-4354-b376-aa0f427236e2" timestamp="2026-09-27T16:23:21.208+05:30" time="0.027">
+    <testsuite name="sethu-demo-picker::harness_checks" tests="1" skipped="0" errors="0" failures="1">
+        <testcase name="verify_random_picker" classname="sethu-demo-picker::harness_checks" timestamp="2026-09-27T16:23:21.209+05:30" time="0.026">
+            <failure message="thread &apos;verify_random_picker&apos; (1010759) panicked at tests/harness_checks.rs:12:5" type="test failure with exit code 101">thread &apos;verify_random_picker&apos; (1010759) panicked at tests/harness_checks.rs:12:5:
+assertion `left == right` failed: random picker ids
+  left: []
+ right: [&quot;asset-r1&quot;, &quot;asset-r2&quot;]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</failure>
+            <system-out>
+running 1 test
+test verify_random_picker ... FAILED
+
+failures:
+
+failures:
+    verify_random_picker
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.02s
+
+</system-out>
+            <system-err>
+thread &apos;verify_random_picker&apos; (1010759) panicked at tests/harness_checks.rs:12:5:
+assertion `left == right` failed: random picker ids
+  left: []
+ right: [&quot;asset-r1&quot;, &quot;asset-r2&quot;]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</system-err>
+        </testcase>
+    </testsuite>
+</testsuites>

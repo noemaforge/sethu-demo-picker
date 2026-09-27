@@ -1,0 +1,27 @@
+{
+  "id": "vc1_1cec7d816b52666c6641966fc05e39783a89b457c476bd3513443faa1283e337",
+  "endpoint": {
+    "method": "PUT",
+    "path": "/system-config"
+  },
+  "kind": "request_schema_changed",
+  "severity": "breaking",
+  "details": {
+    "schema_change": {
+      "pointer": "/properties/image/properties/previewSize",
+      "target": "property",
+      "member": "previewSize",
+      "operation": "removed",
+      "before": {
+        "present": true,
+        "value": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "after": {
+        "present": false
+      }
+    }
+  }
+}

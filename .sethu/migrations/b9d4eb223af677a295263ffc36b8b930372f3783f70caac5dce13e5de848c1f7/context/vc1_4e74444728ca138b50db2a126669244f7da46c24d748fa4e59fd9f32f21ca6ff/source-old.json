@@ -1,0 +1,875 @@
+{
+  "operation": {
+    "operationId": "searchRandom",
+    "parameters": [],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/RandomSearchDto"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SearchResponseDto"
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "security": [
+      {
+        "bearer": []
+      },
+      {
+        "cookie": []
+      },
+      {
+        "api_key": []
+      }
+    ],
+    "tags": [
+      "Search"
+    ]
+  },
+  "components": {
+    "AlbumResponseDto": {
+      "properties": {
+        "albumName": {
+          "type": "string"
+        },
+        "albumThumbnailAssetId": {
+          "nullable": true,
+          "type": "string"
+        },
+        "albumUsers": {
+          "items": {
+            "$ref": "#/components/schemas/AlbumUserResponseDto"
+          },
+          "type": "array"
+        },
+        "assetCount": {
+          "type": "integer"
+        },
+        "assets": {
+          "items": {
+            "$ref": "#/components/schemas/AssetResponseDto"
+          },
+          "type": "array"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "endDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "hasSharedLink": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isActivityEnabled": {
+          "type": "boolean"
+        },
+        "lastModifiedAssetTimestamp": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "order": {
+          "$ref": "#/components/schemas/AssetOrder"
+        },
+        "owner": {
+          "$ref": "#/components/schemas/UserResponseDto"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "shared": {
+          "type": "boolean"
+        },
+        "startDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "albumName",
+        "albumThumbnailAssetId",
+        "albumUsers",
+        "assetCount",
+        "assets",
+        "createdAt",
+        "description",
+        "hasSharedLink",
+        "id",
+        "isActivityEnabled",
+        "owner",
+        "ownerId",
+        "shared",
+        "updatedAt"
+      ],
+      "type": "object"
+    },
+    "AlbumUserResponseDto": {
+      "properties": {
+        "role": {
+          "$ref": "#/components/schemas/AlbumUserRole"
+        },
+        "user": {
+          "$ref": "#/components/schemas/UserResponseDto"
+        }
+      },
+      "required": [
+        "role",
+        "user"
+      ],
+      "type": "object"
+    },
+    "AlbumUserRole": {
+      "enum": [
+        "editor",
+        "viewer"
+      ],
+      "type": "string"
+    },
+    "AssetFaceWithoutPersonResponseDto": {
+      "properties": {
+        "boundingBoxX1": {
+          "type": "integer"
+        },
+        "boundingBoxX2": {
+          "type": "integer"
+        },
+        "boundingBoxY1": {
+          "type": "integer"
+        },
+        "boundingBoxY2": {
+          "type": "integer"
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "imageHeight": {
+          "type": "integer"
+        },
+        "imageWidth": {
+          "type": "integer"
+        },
+        "sourceType": {
+          "$ref": "#/components/schemas/SourceType"
+        }
+      },
+      "required": [
+        "boundingBoxX1",
+        "boundingBoxX2",
+        "boundingBoxY1",
+        "boundingBoxY2",
+        "id",
+        "imageHeight",
+        "imageWidth"
+      ],
+      "type": "object"
+    },
+    "AssetOrder": {
+      "enum": [
+        "asc",
+        "desc"
+      ],
+      "type": "string"
+    },
+    "AssetResponseDto": {
+      "properties": {
+        "checksum": {
+          "description": "base64 encoded sha1 hash",
+          "type": "string"
+        },
+        "deviceAssetId": {
+          "type": "string"
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "duplicateId": {
+          "nullable": true,
+          "type": "string"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "exifInfo": {
+          "$ref": "#/components/schemas/ExifResponseDto"
+        },
+        "fileCreatedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "fileModifiedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "hasMetadata": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isArchived": {
+          "type": "boolean"
+        },
+        "isFavorite": {
+          "type": "boolean"
+        },
+        "isOffline": {
+          "type": "boolean"
+        },
+        "isTrashed": {
+          "type": "boolean"
+        },
+        "libraryId": {
+          "deprecated": true,
+          "description": "This property was deprecated in v1.106.0",
+          "nullable": true,
+          "type": "string"
+        },
+        "livePhotoVideoId": {
+          "nullable": true,
+          "type": "string"
+        },
+        "localDateTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "originalFileName": {
+          "type": "string"
+        },
+        "originalMimeType": {
+          "type": "string"
+        },
+        "originalPath": {
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "#/components/schemas/UserResponseDto"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "people": {
+          "items": {
+            "$ref": "#/components/schemas/PersonWithFacesResponseDto"
+          },
+          "type": "array"
+        },
+        "resized": {
+          "deprecated": true,
+          "description": "This property was deprecated in v1.113.0",
+          "type": "boolean"
+        },
+        "smartInfo": {
+          "$ref": "#/components/schemas/SmartInfoResponseDto"
+        },
+        "stack": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/AssetStackResponseDto"
+            }
+          ],
+          "nullable": true
+        },
+        "tags": {
+          "items": {
+            "$ref": "#/components/schemas/TagResponseDto"
+          },
+          "type": "array"
+        },
+        "thumbhash": {
+          "nullable": true,
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/components/schemas/AssetTypeEnum"
+        },
+        "unassignedFaces": {
+          "items": {
+            "$ref": "#/components/schemas/AssetFaceWithoutPersonResponseDto"
+          },
+          "type": "array"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "checksum",
+        "deviceAssetId",
+        "deviceId",
+        "duration",
+        "fileCreatedAt",
+        "fileModifiedAt",
+        "hasMetadata",
+        "id",
+        "isArchived",
+        "isFavorite",
+        "isOffline",
+        "isTrashed",
+        "localDateTime",
+        "originalFileName",
+        "originalPath",
+        "ownerId",
+        "thumbhash",
+        "type",
+        "updatedAt"
+      ],
+      "type": "object"
+    },
+    "AssetStackResponseDto": {
+      "properties": {
+        "assetCount": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "primaryAssetId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assetCount",
+        "id",
+        "primaryAssetId"
+      ],
+      "type": "object"
+    },
+    "AssetTypeEnum": {
+      "enum": [
+        "IMAGE",
+        "VIDEO",
+        "AUDIO",
+        "OTHER"
+      ],
+      "type": "string"
+    },
+    "ExifResponseDto": {
+      "properties": {
+        "city": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "country": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "dateTimeOriginal": {
+          "default": null,
+          "format": "date-time",
+          "nullable": true,
+          "type": "string"
+        },
+        "description": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "exifImageHeight": {
+          "default": null,
+          "nullable": true,
+          "type": "number"
+        },
+        "exifImageWidth": {
+          "default": null,
+          "nullable": true,
+          "type": "number"
+        },
+        "exposureTime": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "fNumber": {
+          "default": null,
+          "nullable": true,
+          "type": "number"
+        },
+        "fileSizeInByte": {
+          "default": null,
+          "format": "int64",
+          "nullable": true,
+          "type": "integer"
+        },
+        "focalLength": {
+          "default": null,
+          "nullable": true,
+          "type": "number"
+        },
+        "iso": {
+          "default": null,
+          "nullable": true,
+          "type": "number"
+        },
+        "latitude": {
+          "default": null,
+          "nullable": true,
+          "type": "number"
+        },
+        "lensModel": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "longitude": {
+          "default": null,
+          "nullable": true,
+          "type": "number"
+        },
+        "make": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "model": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "modifyDate": {
+          "default": null,
+          "format": "date-time",
+          "nullable": true,
+          "type": "string"
+        },
+        "orientation": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "projectionType": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "rating": {
+          "default": null,
+          "nullable": true,
+          "type": "number"
+        },
+        "state": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "timeZone": {
+          "default": null,
+          "nullable": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PersonWithFacesResponseDto": {
+      "properties": {
+        "birthDate": {
+          "format": "date",
+          "nullable": true,
+          "type": "string"
+        },
+        "faces": {
+          "items": {
+            "$ref": "#/components/schemas/AssetFaceWithoutPersonResponseDto"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isHidden": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "thumbnailPath": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "This property was added in v1.107.0",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "birthDate",
+        "faces",
+        "id",
+        "isHidden",
+        "name",
+        "thumbnailPath"
+      ],
+      "type": "object"
+    },
+    "RandomSearchDto": {
+      "properties": {
+        "city": {
+          "nullable": true,
+          "type": "string"
+        },
+        "country": {
+          "nullable": true,
+          "type": "string"
+        },
+        "createdAfter": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "createdBefore": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "isArchived": {
+          "type": "boolean"
+        },
+        "isEncoded": {
+          "type": "boolean"
+        },
+        "isFavorite": {
+          "type": "boolean"
+        },
+        "isMotion": {
+          "type": "boolean"
+        },
+        "isNotInAlbum": {
+          "type": "boolean"
+        },
+        "isOffline": {
+          "type": "boolean"
+        },
+        "isVisible": {
+          "type": "boolean"
+        },
+        "lensModel": {
+          "nullable": true,
+          "type": "string"
+        },
+        "libraryId": {
+          "format": "uuid",
+          "nullable": true,
+          "type": "string"
+        },
+        "make": {
+          "type": "string"
+        },
+        "model": {
+          "nullable": true,
+          "type": "string"
+        },
+        "page": {
+          "minimum": 1,
+          "type": "number"
+        },
+        "personIds": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "size": {
+          "maximum": 1000,
+          "minimum": 1,
+          "type": "number"
+        },
+        "state": {
+          "nullable": true,
+          "type": "string"
+        },
+        "takenAfter": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "takenBefore": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "trashedAfter": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "trashedBefore": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/components/schemas/AssetTypeEnum"
+        },
+        "updatedAfter": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updatedBefore": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "withArchived": {
+          "default": false,
+          "type": "boolean"
+        },
+        "withDeleted": {
+          "type": "boolean"
+        },
+        "withExif": {
+          "type": "boolean"
+        },
+        "withPeople": {
+          "type": "boolean"
+        },
+        "withStacked": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SearchAlbumResponseDto": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "facets": {
+          "items": {
+            "$ref": "#/components/schemas/SearchFacetResponseDto"
+          },
+          "type": "array"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/components/schemas/AlbumResponseDto"
+          },
+          "type": "array"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "count",
+        "facets",
+        "items",
+        "total"
+      ],
+      "type": "object"
+    },
+    "SearchAssetResponseDto": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "facets": {
+          "items": {
+            "$ref": "#/components/schemas/SearchFacetResponseDto"
+          },
+          "type": "array"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/components/schemas/AssetResponseDto"
+          },
+          "type": "array"
+        },
+        "nextPage": {
+          "nullable": true,
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "count",
+        "facets",
+        "items",
+        "nextPage",
+        "total"
+      ],
+      "type": "object"
+    },
+    "SearchFacetCountResponseDto": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "count",
+        "value"
+      ],
+      "type": "object"
+    },
+    "SearchFacetResponseDto": {
+      "properties": {
+        "counts": {
+          "items": {
+            "$ref": "#/components/schemas/SearchFacetCountResponseDto"
+          },
+          "type": "array"
+        },
+        "fieldName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "counts",
+        "fieldName"
+      ],
+      "type": "object"
+    },
+    "SearchResponseDto": {
+      "properties": {
+        "albums": {
+          "$ref": "#/components/schemas/SearchAlbumResponseDto"
+        },
+        "assets": {
+          "$ref": "#/components/schemas/SearchAssetResponseDto"
+        }
+      },
+      "required": [
+        "albums",
+        "assets"
+      ],
+      "type": "object"
+    },
+    "SmartInfoResponseDto": {
+      "properties": {
+        "objects": {
+          "items": {
+            "type": "string"
+          },
+          "nullable": true,
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "nullable": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SourceType": {
+      "enum": [
+        "machine-learning",
+        "exif"
+      ],
+      "type": "string"
+    },
+    "TagResponseDto": {
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "id",
+        "name",
+        "updatedAt",
+        "value"
+      ],
+      "type": "object"
+    },
+    "UserAvatarColor": {
+      "enum": [
+        "primary",
+        "pink",
+        "red",
+        "yellow",
+        "blue",
+        "green",
+        "purple",
+        "orange",
+        "gray",
+        "amber"
+      ],
+      "type": "string"
+    },
+    "UserResponseDto": {
+      "properties": {
+        "avatarColor": {
+          "$ref": "#/components/schemas/UserAvatarColor"
+        },
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "profileChangedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "profileImagePath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "avatarColor",
+        "email",
+        "id",
+        "name",
+        "profileChangedAt",
+        "profileImagePath"
+      ],
+      "type": "object"
+    }
+  }
+}

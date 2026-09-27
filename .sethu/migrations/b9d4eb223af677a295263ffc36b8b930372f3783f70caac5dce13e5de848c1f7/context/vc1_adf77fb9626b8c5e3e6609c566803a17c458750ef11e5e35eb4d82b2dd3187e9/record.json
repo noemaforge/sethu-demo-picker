@@ -1,0 +1,27 @@
+{
+  "id": "vc1_adf77fb9626b8c5e3e6609c566803a17c458750ef11e5e35eb4d82b2dd3187e9",
+  "endpoint": {
+    "method": "POST",
+    "path": "/search/random"
+  },
+  "kind": "request_schema_changed",
+  "severity": "breaking",
+  "details": {
+    "schema_change": {
+      "pointer": "/properties/page",
+      "target": "property",
+      "member": "page",
+      "operation": "removed",
+      "before": {
+        "present": true,
+        "value": {
+          "minimum": 1,
+          "type": "number"
+        }
+      },
+      "after": {
+        "present": false
+      }
+    }
+  }
+}

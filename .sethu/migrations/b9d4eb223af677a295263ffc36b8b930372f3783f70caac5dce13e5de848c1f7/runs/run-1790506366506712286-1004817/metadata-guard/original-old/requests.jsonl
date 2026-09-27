@@ -1,0 +1,1 @@
+{"scenario_id":"metadata-search","method":"POST","path":"/search/metadata","request_valid":true,"request_detail":"body matches the contract schema","response_status":200,"response_body_sha256":"a2dade0d7613285afcab9f0111dcca159fff4307e6ca3951fa86a656f9f55a3d","response_written":true}

@@ -1,0 +1,26 @@
+{
+  "id": "vc1_37f8421e215976ed5feeed9478d83b7accb42deaa8316b161ffdf0c3d35dc545",
+  "endpoint": {
+    "method": "POST",
+    "path": "/search/random"
+  },
+  "kind": "response_schema_changed",
+  "severity": "breaking",
+  "details": {
+    "status": "200",
+    "schema_change": {
+      "pointer": "/type",
+      "target": "type",
+      "member": null,
+      "operation": "changed",
+      "before": {
+        "present": true,
+        "value": "object"
+      },
+      "after": {
+        "present": true,
+        "value": "array"
+      }
+    }
+  }
+}
