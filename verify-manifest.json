@@ -2,7 +2,7 @@
   "schema_version": 1,
   "repo": "/home/nryn/work/sethu-demo-picker",
   "baseline_commit": "3074c1f0f23ba6dd3c690d2573a70596f4743613",
-  "patched_commit": "133fbf1cdc50e2445a3404ab1d0eb9a2d6e8df88",
+  "patched_commit": "40bb50db2c1bd5c2c46785e2838981319618c378",
   "harness": "harness",
   "scenarios_old": "harness/scenarios/old",
   "scenarios_new": "harness/scenarios/new",
